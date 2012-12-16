@@ -8,7 +8,7 @@ package
 	 * 
 	 * 
 	 */
-	public class humanReg extends FlxSprite
+	public class human extends FlxSprite
 	{
 		public var _health:Number;
 		public var _gibs:FlxEmitter;
@@ -16,13 +16,13 @@ package
 		private var originalX:int;
 		protected var frontBumper:FlxObject;
 		protected var speed:Number;
-		public function humanReg(X:int, Y:int) 
+		public function human(X:int, Y:int) 
 		{
 			super(X, Y);
 			loadGraphic(GameAssets.imgHuman, true, true, 26, 25);
 			facing = FlxObject.LEFT;
 			_health = 1;
-			solid = true;
+			//solid = true;
 			originalX = x;
 			speed = 30;
 			maxVelocity.x = speed;
@@ -32,7 +32,6 @@ package
 			addAnimation("running", [2, 3, 4, 5, 6, 7, 8, 9], 10, true);
 			addAnimation("killed", [0, 1], 3, false);
 			//velocity.x = 30;
-			acceleration.x = FlxG.random() * -1;
 			frontBumper = new FlxObject(x -1, y , 1, height);
 		
 		}
@@ -40,10 +39,10 @@ package
 		override public function update():void
 		{
 			super.update();
-			if (alive)
+			if (alive || FlxG.state.active != MenuState)
 			{
 
-				//New code
+				/*//New code
 				var a:Number = FlxVelocity.distanceBetween(this, Registry.followO);
 				var b:Number = FlxVelocity.angleBetween(this, Registry.followO);
 				if (a <= 75)
@@ -51,13 +50,13 @@ package
 					acceleration.x = 0;
 					if (b > -1 && facing == FlxObject.RIGHT)
 					{
-						velocity.x = FlxG.random()*-75;
+						velocity.x = FlxG.random()*-50;
 						facing = LEFT;
 					}
 					
 					if (b > -45 && facing == FlxObject.LEFT)
 					{
-						velocity.x = FlxG.random()*75;
+						velocity.x = FlxG.random()*50;
 						facing = RIGHT;
 					}
 				}
@@ -67,14 +66,14 @@ package
 					acceleration.x += (facing == LEFT) ? ( -speed) : (speed);
 					updateBumpers();
 				
-					if (frontBumper.overlaps(Registry.player)|| frontBumper.overlaps(Registry.map))
+					if (frontBumper.overlaps(Registry.player))
 					{
 						FlxG.log("OVER");
 						facing = (facing == LEFT) ? RIGHT : LEFT;
 						acceleration.x = 0;
 						updateBumpers();
 					}
-				}
+				}*/
 				
 		    	if (velocity.x > 0 || velocity.x < -1)
 					play("running");

@@ -18,7 +18,7 @@ package
 		public function shooter(X:int , Y:int) 
 		{
 			super(X, Y);
-			loadGraphic(GameAssets.imgHuman, true, true, 26, 25);
+			loadGraphic(GameAssets.imgHunter, true, true, 26, 25);
 			solid = true;
 			facing = FlxObject.LEFT;
 			maxVelocity.x = 100;			//walking speed
@@ -33,7 +33,7 @@ package
 			weapon.setFiringPosition(this.x, this.y, 0, 0);
 			bounds = new FlxRect(0, 0, FlxG.width+3000, FlxG.height+500);
 			weapon.setBulletBounds(bounds);
-			weapon.makeImageBullet(500, GameAssets.blood, 5,5);
+			weapon.makeImageBullet(500, GameAssets.bullet, 5,5);
 			weapon.bulletLifeSpan = 2000;
 			weapon.setBulletSpeed(100);
 			weapon.setFireRate(800);

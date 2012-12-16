@@ -16,12 +16,6 @@ package
 		/**
 		 * Constants
 		 */
-		/*private var myRadians:int;
-		private var myDegrees:int;
-		private var yChange:int;
-		private var xChange:int;
-		private var yMove:int;
-		private var xMove:int;*/
 		public static var _x:int;
 		public static var _a:int;
 		
@@ -47,20 +41,7 @@ package
 				FlxVelocity.moveTowardsObject(this, Registry._humanShooter, 75); 
 			else if ( c <= 100)
 				FlxVelocity.moveTowardsObject(this, Registry._humanReg, 75); 
-			
-			/*TweenLite.to(this, 5, { x:Player._x } );
-			if (Player._x < this.x+20)
-			{
-				TweenLite.to(this, 5, { x:Player._x - 60 } );
-			}*/
-			/*myRadians = Math.atan2(Player._y - this.y, Player._x - this.x);
-			myDegrees = Math.round((myRadians*180/Math.PI))
-			//this.yChange = Math.round(PlayState4._player.y - this.y);
-			this.xChange = Math.round(Player._x - this.x);
-			//this.yMove = Math.round(yChange / 20);
-			this.xMove = Math.round(xChange / 20);*/
-			//this.y += yMove;
-			//velocity.x += 10;
+
 			_x = x;
 			_a = velocity.x;
 		}

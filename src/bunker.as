@@ -1,7 +1,7 @@
 package  
 {
-	/* //TODO Find or create a better sprite
-	 * Add two different sounds for crush
+	/* 
+	 *Add ligthing effects
 	 * 
 	 * 
 	 * 

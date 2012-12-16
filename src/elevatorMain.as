@@ -87,6 +87,7 @@ package
 						//FlxG.play(GameAssets.stompBoom);
 						velocity.y = -155;
 						solid = true;
+						
 					}
 				
 					else if (y <= startPoint.y)//If the elevator has not reached the upper limit then send the elevator up
@@ -116,38 +117,30 @@ package
 							turnAround();
 						}
 						
-						//Using GreenSock for the easing 
-						TweenLite.to(this, .5, { x:Registry.followO.x-40, ease:Sine.easeInOut} );
-						velocity.y = +200;
-						
-						down = false;
-						y = startPoint.y; //Reached the bottom 
-						
-						var a:Number = FlxVelocity.distanceBetween(this, Registry.player)
+						var a:Number = FlxVelocity.distanceBetween(Registry.followO, Registry.player)
 						if (a<=45) //To detect if the player is near the step
 						{
-							
-									this.x = Registry.player.x;
-									velocity.y = +500; //Hard stomp
-									//Sound here
-	
+								this.x = Registry.player.x-75;
+								velocity.y = +500; //Hard stomp
+								//Sound here
+								y = startPoint.y; //Reached the bottom 
+						}
+						else
+						{
+								//Using GreenSock for the easing 
+								TweenLite.to(this, .5, { x:Registry.followO.x-40, ease:Sine.easeInOut} );
+								velocity.y = +200;
+								down = false;
+								y = startPoint.y; //Reached the bottom 
 							
 						}
 					}//End of else if
+		
 			}//End of movement 
 			 
 		 }//End of update
 		
-		 //Kicking
-		public function kick():void
-		{	//Have this code for both directions
-			down = true;
-			velocity.y += 5;
-			velocity.x += 700;
-			if (velocity.x >= 1400)
-				velocity.x = 0;
-			//TweenLite.to(this, 1, {x:Player._x +50, ease:Elastic.easeOut});
-		}
+		
 		 /**
 		  * To fix our little playstate issue
 		  */

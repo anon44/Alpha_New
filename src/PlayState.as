@@ -28,9 +28,10 @@ package
 		public var _tree:Tree;
 		public var totalTrees:int;
 		public var _woodHouse:woodHouse;
+		public var _woodHouses:FlxGroup;
 		public var totalHouses:int
 		public var _bunker:bunker;
-		public var exit:FlxSprite;
+		public var _exit:FlxSprite;
 		
 		//Player
 		public var _player:Player;
@@ -72,22 +73,8 @@ package
 			 * Create the objects
 			 */
 			
-			 //Coins
-			_coinEmitter = new FlxEmitter(0, 0, 20);
-			_coinEmitter.gravity = 350;
-			_coinEmitter.setRotation(0, 0);
-			_coinEmitter.setXSpeed(-160, 160);
-			_coinEmitter.setYSpeed( -200, -300);
-			
-			for (var i:int = 0; i < _coinEmitter.maxSize; i++)
-			{
-				_coinEmitter.add(new Coin);
-			}
-			add(_coinEmitter);
-			//Trees
-			
-
-			var _treemap:FlxTilemap = new FlxTilemap();
+			 //Trees
+			 var _treemap:FlxTilemap = new FlxTilemap();
 			_treemap.loadMap(new GameAssets.treeCSV, GameAssets.treePNG, 48, 48);
 			_trees = new FlxGroup();
 			for (var uy:int = 0; uy < _treemap.heightInTiles; uy++)
@@ -104,6 +91,7 @@ package
 			add(_trees);
 			
 			//Add the wood house
+			_woodHouses = new FlxGroup();
 			var _houses:Array = [
 								new FlxPoint(1000,205),
 								new FlxPoint(1700,205),
@@ -113,34 +101,42 @@ package
 			for(var h:int = 0; h < _houses.length; h++)
 			{
 				_woodHouse = new woodHouse((_houses[h] as FlxPoint).x, (_houses[h] as FlxPoint).y);
-				add(_woodHouse);
+				_woodHouses.add(_woodHouse);
 				
 			}
-			
+			add(_woodHouses);
 			
 			//Add Bunker 
-			exit = new FlxSprite(2525, 270);	
-			//exit.exists = false;
-			
 			_bunker = new bunker(2500, 240);
 			add(_bunker);
-			add(exit);
+			
 			//Add Cars
 			_cars = new FlxGroup;
 			for (var z:int = 0; z < 3; z++)
 			{
 				_car = new Car(FlxG.random() * 500+1500, 240);
 				_cars.add(_car);
-				
 			}
 			add(_cars);
 				
-				//Create the level exit, a dark gery box that is hidden at first
-				exit = new FlxSprite(35*8+1, 25*8);//Change this
-				exit.makeGraphic(14, 16, 0xff3f3f3f);
-				exit.exists = false;
-				add(exit);
+			//Create the level exit, a dark gery box that is hidden at first
+			_exit = new FlxSprite(2526, 270);//test
+			_exit.makeGraphic(17, 24, 0xff3f3f3f);
+			_exit.exists = false;
+			add(_exit);
 			
+			 //Coins
+			_coinEmitter = new FlxEmitter(0, 0, 20);
+			_coinEmitter.gravity = 800;
+			_coinEmitter.setRotation(0, 0);
+			_coinEmitter.setXSpeed(-160, 160);
+			_coinEmitter.setYSpeed( -200, -300);
+			
+			for (var i:int = 0; i < _coinEmitter.maxSize; i++)
+			{
+				_coinEmitter.add(new Coin);
+			}
+			add(_coinEmitter);
 			/*End Objects*/
 	
 			
@@ -153,6 +149,7 @@ package
 			for ( var y:int = 0; y < 15; y++)
 			{
 				_humanReg = new humanReg(FlxG.random() * 500 + 1300, 240);
+				//_humanReg = new humanReg(200, 240);
 				_humans.add(_humanReg);
 				Registry._humanReg = _humanReg
 			}
@@ -163,8 +160,7 @@ package
 				Registry._humanShooter = _shooter;
 			}
 			add(_humans);
-			
-			
+	
 			/*Add Enemies*/
 			_elevators = new FlxGroup();
 			_elevator1 = new Elevator1(_elevatorStart.x, _elevatorStart.y);
@@ -175,7 +171,7 @@ package
 			_elevators.add(_elevator2);
 			_elevators.add(_elevator1);
 			
-			//add(_elevators);
+			add(_elevators);
 			add(_followObject);	
 			/*End Enemies*/
 			
@@ -202,7 +198,7 @@ package
 			
 			//Create the lives
 			_lives = new FlxBar(FlxG.width / 2 +100, 10, FlxBar.FILL_LEFT_TO_RIGHT, 8, 8);
-			_lives.createImageBar(null, GameAssets.heartPNG);
+			_lives.createImageBar(null, GameAssets.heartPNG);//TODO: Need to fix this back ground to transparent
 			_lives.setRange(0, 3);
 			_lives.currentValue = 3;
 			_lives.scrollFactor.x = 0;
@@ -236,15 +232,11 @@ package
 			super.update();
 			//Collide
 			FlxG.collide(_player, _level);
-			FlxG.collide(_player, _humans);
 			FlxG.collide(_humans, _level);
 			FlxG.collide(_cars, _level);
 			FlxG.collide(_coinEmitter, _level);
-			//FlxG.collide(_elevators, _level, move);
-			
-	
-			
 		
+
 			//This will pause the G's movement for at least three secs before the game starts.
 			//We will need three counters to get this to work
 			_counter += FlxG.elapsed;   // This first one will start everything
@@ -285,25 +277,18 @@ package
 			//Overlap
 			//Don't know why but this only works down here
 			FlxG.overlap(_player, _coinEmitter, collectedCoin);
-			FlxG.overlap(exit, _player, win);
+			FlxG.overlap(_player, _exit, win);
 			FlxG.overlap(_elevators, _humans, killHuman);
 			FlxG.overlap(_elevators, _cars, killHuman);
 			FlxG.overlap(_elevators, _trees, hitTree);
-			FlxG.overlap(_elevators, _woodHouse, killWood);
+			FlxG.overlap(_elevators, _woodHouses, killWood);
 			FlxG.overlap(_elevators, _player, playerHits);
 		}
 		
 			
 		/**
 		 * Call the private events 
-		 * 
 		 * */
-		private function move(_elevators:elevatorMain):void
-		{
-			
-			
-			
-		}
 		/**
 		 * When the player gets hit
 		 */
@@ -329,6 +314,8 @@ package
 				}
 				
 			}
+			else
+				_player.velocity.x += 40; //This can work for kicking movement for now 
 		}//End of playerHits1
 		
 		//Collect Coin
@@ -340,28 +327,27 @@ package
 			scoreText.text = "Score: " + FlxG.score.toString();
 			if (FlxG.score >= 10)
 			{
-				exit.exists = true;
+				_bunker.frame = 1;
+				_exit.exists = true;
 			}
 		}
 
-
-		
 		//Kill the Tress
 		private	function hitTree(elevators:FlxObject, tree:FlxObject):void
 		{
 			tree.kill();
 			_coinEmitter.x = tree.x;
 			_coinEmitter.y = tree.y;
-			_coinEmitter.start(true, 0, 0, 1);
+			_coinEmitter.start(true, 0, 0, 2);
 			
 		}
 		//Kill the wood blocks
-		private	function killWood(elevators:FlxObject, _woodHouse:FlxObject):void
+		private	function killWood(_elevators:FlxObject, _woodHouse:FlxObject):void
 		{
 			_woodHouse.kill();
-			_coinEmitter.x = _woodHouse.x;
+			_coinEmitter.x = _woodHouse.x+50;
 			_coinEmitter.y = _woodHouse.y;
-			_coinEmitter.start(true, 0, 0, 1);
+			_coinEmitter.start(true, 0, 0, 15);
 			
 		}
 		
@@ -371,8 +357,8 @@ package
 			_humanReg.kill();
 			_coinEmitter.x = _humanReg.x;
 			_coinEmitter.y = _humanReg.y;
-			_coinEmitter.start(true, 0, 0, 1);
-			_coinEmitter.kill();
+			_coinEmitter.start(true, 0, 0, 3);
+			_coinEmitter.lifespan = 50;
 		}
 		
 		private function killShooter(_elevators:FlxObject, _shooter:FlxObject):void
@@ -380,8 +366,7 @@ package
 			_shooter.kill();
 			_coinEmitter.x = _shooter.x;
 			_coinEmitter.y = _shooter.y;
-			_coinEmitter.start(true, 0, 0, 1);
-			_coinEmitter.kill();
+			_coinEmitter.start(true, 0, 0, 5);
 		}
 		
 		private function killCar(_elevators:FlxObject, _car:FlxObject):void
@@ -389,7 +374,7 @@ package
 			_car.kill()
 			_coinEmitter.x = _car.x;
 			_coinEmitter.y = _car.y;
-			_coinEmitter.start(true, 0, 0, 1);
+			_coinEmitter.start(true, 0, 0, 4);
 		}
 		
 		//Reset the state if the player dies
@@ -398,7 +383,7 @@ package
 			//Make sure the player still has lives to restart
 			if (_lives.currentValue == 0)
 			{
-				//FlxG.fade(0xff000000, 2, gameOver);
+				FlxG.fade(0xff000000, 2, gameOver);
 			}
 			else //Restart the player
 			{
@@ -416,9 +401,11 @@ package
 		}
 		
 		//Called whenever the player touches the exit
-		public function win(Exit:FlxSprite, _player:FlxSprite):void 
+		private function win(exit:FlxObject, Player:FlxObject):void 
 		{
 			//change the playstate
+			Player.kill();
+			FlxG.switchState(new GameOver());
 		}
 		
 		override public function destroy():void

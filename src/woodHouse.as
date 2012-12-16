@@ -1,8 +1,8 @@
 package  
 {
-	/* //TODO Find or create a better sprite
+	/* //TODO 
 	 * Add two different sounds for crush
-	 * 
+	 * Make an array to have a set of random houses
 	 * 
 	 * 
 	 * */
@@ -20,7 +20,7 @@ package
 		public function woodHouse(X:int, Y:int)
 		{
 			super(X, Y);
-			loadGraphic(GameAssets.woodPNG, true, false, 103.333333, 84);
+			loadGraphic(GameAssets.woodPNG, true, false, 104, 84);
 			solid = true;
 			addAnimation("idle", [1]);
 			addAnimation("crushed", [2]);
@@ -56,10 +56,10 @@ package
 			
 			//FlxG.play(GameAssets.stompTree, .35);
 			//Coins
-			//cE =   new coinEmitter(this.x, this.y);
-			//cE.start(true, 0, 0, 1);
-			//FlxG.state.add(cE);
-			
+			/*cE =   new coinEmitter(this.x, this.y);
+			cE.start(true, 0, 0, 1);
+			FlxG.state.add(cE);
+			*/
 			//Gibs creator
 			//Gibs creator for the leafs
 			_gibs = new FlxEmitter(0,0, -1.5);
@@ -68,8 +68,8 @@ package
 			_gibs.setRotation(-720,-720);
 			_gibs.gravity = 100;
 			_gibs.bounce = 0.1;
-			//_gibs.makeParticles(GameAssets.leafBits, 10, 10, false, 0.5); TODO:Change this to wood bits
-			//FlxG.state.add(_gibs);
+			_gibs.makeParticles(GameAssets.woodHouseBits, 10, 10, false, 0.5);
+			FlxG.state.add(_gibs);
 			
 			_gibs.x = this.x + width / 2;
 			_gibs.x = this.y + height / 2;

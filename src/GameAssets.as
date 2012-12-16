@@ -14,6 +14,8 @@ package
 		
 		//Moving Objects
 		[Embed(source =  "../src/Images/humanNew.png")] public static var imgHuman:Class;
+		[Embed(source = "../src/Images/bullet.png")] public static var bullet:Class;
+		[Embed(source =  "../src/Images/humanHunter.png")] public static var imgHunter:Class;
 		
 		//Map Stuff
 		[Embed(source = "../src/MapData/mapCSV_Group1_Background.csv", mimeType = "application/octet-stream")] public static var backCSV:Class;
@@ -30,7 +32,7 @@ package
 		[Embed(source = "../src/Images/barkBits.png")] public static var barkBits:Class;
 		[Embed(source = "../src/Images/woodHouseNew.png")] public static var woodPNG:Class;
 		[Embed(source = "../src/Images/bunker.png")] public static var bunkerPNG:Class;
-		
+		[Embed(source = "../src/Images/_woodHouseBits.png")] public static var woodHouseBits:Class;
 		[Embed(source = "../src/Images/woodBits.png")] public static var woodBits:Class;
 		[Embed(source = "../src/Images/tree1.png")] public static var treePNG:Class;
 		[Embed(source = "../src/Images/suv1.png")] public static var suv1PNG:Class;
