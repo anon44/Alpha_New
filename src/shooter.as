@@ -53,7 +53,7 @@ package
 				var b:Number = FlxVelocity.angleBetween(this, Registry.followO);
 				if (a <= 75)
 				{
-					this.weapon.fireAtTarget(Registry.followO);//Making this the first elevator for now, later make to where it will shoit both of the elevators.
+					this.weapon.fireAtTarget(Registry.followO);//Making this the first elevator for now, later make to where it will shoot both of the elevators.
 					if (b > -1 && facing == FlxObject.RIGHT)
 					{
 						velocity.x = -20;
@@ -89,7 +89,7 @@ package
 			play("killed");
 			frame = 0;
 			//Play sound 
-			//FlxG.play(GameAssets.humanHit, .75);
+			FlxG.play(GameAssets.humanHit, .75);
 			
 			//Gibs creator
 			_gibs = new FlxEmitter(0,0, -1.5);

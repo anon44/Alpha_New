@@ -10,20 +10,26 @@ package
 	{
 		override public function create():void
 		{
-			FlxG.bgColor = 0x000000;
+			FlxG.bgColor = 0xff3f3f3f;
 			
 			//Title
-			var title:FlxText = new FlxText(FlxG.width *0.5 -200, 40, 400, "Info");
+			var title:FlxText = new FlxText(FlxG.width *0.5 -200, 20, 400, "Info");
 			title.setFormat(null, 24, 0xffffff, "center");
 			add(title);
 			
-			var info:FlxText = new FlxText(FlxG.width * 0.5 -75, 80, 400, "Use the arrow keys to move.");		
+			var game:FlxText = new FlxText(FlxG.width *0.5 -200, 60, 400, "Hurry and get to the bunker before the Giantess catches you");	
+			game.setFormat(null, 8, 0xffffff, "center");
+			add(game);
 			
-			var info2:FlxText = new FlxText(FlxG.width *0.5 -75, 100, 400, "Press any key to start the game.");
+			var info:FlxText = new FlxText(FlxG.width *0.5 -200, 80, 400, "Use the arrow keys to move and the space bar to jump");	
+			info.setFormat(null, 8, 0xffffff, "center");
+			add(info);
+			
+			var info2:FlxText = new FlxText(FlxG.width *0.5 -85, 100, 400, "Press any key to start the game.");
 			info.setFormat(null, 8, 0xffffff, "center");
 			add(info2);
 			
-			var info3:FlxText = new FlxText (FlxG.width * 0.5 -75, 140, 175, "This game was made with Actionscript 3, Flixel, Flixel Power Tools, and GreenSock.");
+			var info3:FlxText = new FlxText (FlxG.width * 0.5 -150, 140, 300, "This game was made with Actionscript 3, Flixel, Flixel Power Tools, and GreenSock API. Some of the sprites weres rip from Photostorm.com and spriters-resource.com");
 			info.setFormat(null, 8, 0xffffff, "center");
 			add(info3);
 		}

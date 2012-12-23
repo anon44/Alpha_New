@@ -7,7 +7,7 @@ package
 	public class PlayState extends FlxState
 	{
 		public var _background:FlxTilemap;
-		public var _level:FlxTilemap;//Create the level
+		public var _level:FlxTilemap;
 		
 		public var _followObject:followObject;
 		public var _elevators:FlxGroup;
@@ -236,7 +236,6 @@ package
 			FlxG.collide(_cars, _level);
 			FlxG.collide(_coinEmitter, _level);
 		
-
 			//This will pause the G's movement for at least three secs before the game starts.
 			//We will need three counters to get this to work
 			_counter += FlxG.elapsed;   // This first one will start everything
@@ -321,7 +320,7 @@ package
 		//Collect Coin
 		private function collectedCoin(player:FlxObject, coin:FlxObject):void
 		{
-			//FlxG.play(GameAssets.coinGet, 2);
+			FlxG.play(GameAssets.coinGet, 2);
 			coin.kill();
 			FlxG.score += 1;
 			scoreText.text = "Score: " + FlxG.score.toString();
@@ -329,6 +328,7 @@ package
 			{
 				_bunker.frame = 1;
 				_exit.exists = true;
+				_exit.visible = false;
 			}
 		}
 

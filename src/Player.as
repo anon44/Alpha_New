@@ -9,7 +9,6 @@ package
 	 */
 	public class Player extends FlxSprite
 	{
-		public static var _width:int;
 		public var _gibs:FlxEmitter;
 		public var startPosition:FlxPoint = new FlxPoint(150, 200);
 		
@@ -19,25 +18,23 @@ package
 		public function Player(X:int, Y:int)
 		{
 			super(X, Y);
-			loadGraphic(GameAssets.player, true);
-			//For the elevators
-			_width = new int;
+			loadGraphic(GameAssets.player, true, true, 26, 25);
 			maxVelocity.x = 100;			//walking speed
 			acceleration.y = 400;			//gravity
 			drag.x = maxVelocity.x*4;		//deceleration (sliding to a stop)
 			health = 5;                    //Start off with 5 health points
 			solid = true;
 			
-			width = 8;
-			height = 10;
+			width = 26;
+			height = 25;
 			offset.x = 3;
-			offset.y = 3;
+			offset.y = 0;
 			
-			addAnimation("idle",[0],0,false);
-			addAnimation("walk",[1,2,3,0],10,true);
+			addAnimation("idle",[10],0,false);
+			addAnimation("walk",[2, 3, 4, 5, 6, 7, 8, 9],10,true);
 			addAnimation("walk_back",[3,2,1,0],10,true);
-			addAnimation("flail",[1,2,3,0],18,true);
-			addAnimation("jump",[4],0,false);
+			addAnimation("flail",[2, 3, 4, 5, 6, 7, 8, 9],18,true);
+			addAnimation("jump",[2, 3, 4, 5, 6, 7, 8, 9],10,false);
 		}
 		
 		
@@ -63,10 +60,16 @@ package
 					velocity.y = -acceleration.y*0.51;
 					play("jump");
 				}//Animations
-				else if(velocity.x > 0)
+				else if (velocity.x > 0)
+				{
 					play("walk");
+					facing = RIGHT;
+				}
 				else if(velocity.x < 0)
-					play("walk_back");
+				{
+					play("walk");
+					facing = LEFT;
+				}
 				else
 					play("idle");
 			}
@@ -80,19 +83,14 @@ package
 			if (x > FlxG.worldBounds.width - 4)
 				x = FlxG.worldBounds.width - 4;
 			if (x < 4)
-				x = 4;
-			
-			
-			//Update the position to the elevators
-		
-			_width = width;
+				x = 4;			
 		}
 		
 		public function hit():void
 		{
 			if (flickering)
 				return
-			//FlxG.play(GameAssets.playerHit);
+			FlxG.play(GameAssets.playerHit);
 			flicker(1.3);
 			health -= 1;
 		}
@@ -106,8 +104,8 @@ package
 				return;
 			super.kill();
 			//Play sound
-			//play("squished");
-			//FlxG.play(GameAssets.gLaugh);
+			play("squished");
+			FlxG.play(GameAssets.gLaugh);
 			//Gibs creator
 			_gibs = new FlxEmitter(0,0, -1.5);
 			_gibs.setXSpeed(-150,170);

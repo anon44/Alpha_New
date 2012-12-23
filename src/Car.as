@@ -6,11 +6,7 @@ package
 	import Registry;
 	
 	/**
-	 * Human Entity 
-	 *  Add sounds to the turnAround and Kill functions
-	 *  Add Animations to scream and hide
-	 *  Have body parts in a gib emitter 
-	 *  Edit Sprites
+	 * Car
 	 */
 	
 	public class Car extends FlxSprite
@@ -28,7 +24,7 @@ package
 			facing = FlxObject.LEFT;
 			_health = 1;
 			solid = true;
-			drag.x = 20; //This is here only for this stage, remove or adjust for the game
+			drag.x = 15; 
 			acceleration.y = 25;
 			
 			//Create Animations
@@ -41,7 +37,6 @@ package
 			super.update();
 			if (alive)
 			{	
-				//New Code
 				var a:Number = FlxVelocity.distanceBetween(this, Registry.followO);
 				var b:Number = FlxVelocity.angleBetween(this, Registry.followO);
 				if (a <= 145)
@@ -60,7 +55,7 @@ package
 				}
 	
 				if (velocity.x > 0 || velocity.x < -1)
-					play("idle"); //Add moving animations later
+					play("idle"); 
 				else 
 					play("idle");
 			}

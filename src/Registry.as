@@ -3,8 +3,6 @@ package
 	import org.flixel.FlxRect;
 	import followObject;
 	import Player;
-	//import Elevator1;
-	//import Elevator2;
 	import org.flixel.*;
 	/**
 	 * ...

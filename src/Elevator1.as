@@ -17,7 +17,7 @@ package
 		public function Elevator1(X:int, Y:int)
 		{
 			super(X, Y);
-			loadGraphic(GameAssets.elevatorPIC, true, true, 133, 240);//Size we need to make
+			loadGraphic(GameAssets.elevatorPIC, true, true, 133, 240);
 			startPoint = new FlxPoint(-75, -50);
 			endPoint = new FlxPoint(0, 55); 
 			moves = false;
@@ -40,11 +40,6 @@ package
 		override protected function updateControls():void
 		{
 			super.updateControls();
-			/*acceleration.x = followObject._a; //This works but needs more adjustments
-			if (acceleration.x < -1)//Playing around with this, trying different things
-				acceleration.x * 1;
-			else if (acceleration.x == 0)
-				acceleration.x * 50;*/
 			//Updating the animations in the game
 			if (facing == LEFT && down == true)
 				frame = 2;

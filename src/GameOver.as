@@ -10,6 +10,7 @@ package
 		public var title:FlxText;
 		public var score:FlxText;
 		public var timer:Number = 0;
+		public var restart:FlxText;
 		
 		override public function create():void
 		{
@@ -29,6 +30,11 @@ package
 			add(score);	
 			
 			
+			//Restart
+			restart = new FlxText(FlxG.width *0.5 -205, 120, 400, "To restart press R");
+			restart.setFormat(null, 8, 0xffffff, "center")
+			restart.visible = false;
+			add(restart);
 		}
 		
 		override public function update():void
@@ -42,18 +48,22 @@ package
 			if ( timer > 2)
 			{
 				score.visible = true;
+				restart.visible = true;
 				if (FlxG.keys.any())
 				{
 					FlxG.fade(0xff000000, 2, onPlay);
-					//FlxG.music.fadeOut(2);
 				}
+			}
+			
+			if (FlxG.keys.justReleased("R"))
+			{
+				onPlay();
 			}
 			
 		}
 		
 		protected function onPlay():void
 		{
-			//playButton.exists = false;
 			FlxG.switchState(new MenuState());
 		}
 		

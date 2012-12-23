@@ -3,10 +3,7 @@ package
 
 /**
 	 * This is the main class for the elevator
-	 * UPDATE: It looks like I got the new code working.
-	 * Add sounds to the turnAround and Kill functions 
-	 *  Other Things:
-	 *   Add kick functions
+	 * 
 	 * 
 	 */
 	import org.flixel.*;
@@ -84,7 +81,7 @@ package
 						down = true;
 						
 						FlxG.shake(.005, .1); // Shake the level
-						//FlxG.play(GameAssets.stompBoom);
+						FlxG.play(GameAssets.stompBoom);
 						velocity.y = -155;
 						solid = true;
 						
@@ -94,19 +91,6 @@ package
 					{
 						solid = false;
 			
-						/*var b:Number = FlxVelocity.angleBetween(this, Registry.followO);
-						//To test if the player is to the right or the left of the g
-						
-						if (b > -1 && facing == FlxObject.RIGHT)
-						{
-							//turnAround();
-							facing = LEFT;
-						}
-						if (b > -45 && facing == FlxObject.LEFT)
-						{
-							facing = RIGHT;
-							//turnAround();
-						}*/
 						//To test if the player is to the right or the left of the g
 						if (Registry.followO.x> x-40 && facing == FlxObject.LEFT)
 						{
@@ -122,7 +106,8 @@ package
 						{
 								this.x = Registry.player.x-75;
 								velocity.y = +500; //Hard stomp
-								//Sound here
+								TweenLite.to(this, .01, { x:Registry.followO.x-40, ease:Sine.easeInOut} );
+								FlxG.play(GameAssets.stompBoom);
 								y = startPoint.y; //Reached the bottom 
 						}
 						else

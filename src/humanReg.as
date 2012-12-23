@@ -4,7 +4,7 @@ package
 	import org.flixel.plugin.photonstorm.*;
 	import GameAssets;
 	import Registry;
-	/** //TODO Create basic movement 
+	/** Human Class
 	 * 
 	 * 
 	 */
@@ -26,12 +26,11 @@ package
 			originalX = x;
 			speed = 30;
 			maxVelocity.x = speed;
-			//drag.x = 20; //This is here only for this stage, remove or adjust for the game
+			
 			acceleration.y = 50;
 			addAnimation("idle", [10], 0);
 			addAnimation("running", [2, 3, 4, 5, 6, 7, 8, 9], 10, true);
 			addAnimation("killed", [0, 1], 3, false);
-			//velocity.x = 30;
 			acceleration.x = FlxG.random() * -1;
 			frontBumper = new FlxObject(x -1, y , 1, height);
 		
@@ -42,8 +41,6 @@ package
 			super.update();
 			if (alive)
 			{
-
-				//New code
 				var a:Number = FlxVelocity.distanceBetween(this, Registry.followO);
 				var b:Number = FlxVelocity.angleBetween(this, Registry.followO);
 				if (a <= 75)
@@ -51,6 +48,7 @@ package
 					acceleration.x = 0;
 					if (b > -1 && facing == FlxObject.RIGHT)
 					{
+						FlxG.play(GameAssets.humanScream1, .15);
 						velocity.x = FlxG.random()*-75;
 						facing = LEFT;
 					}
@@ -62,8 +60,7 @@ package
 					}
 				}
 				else
-				{
-					//New code 
+				{ 
 					acceleration.x += (facing == LEFT) ? ( -speed) : (speed);
 					updateBumpers();
 				
@@ -134,7 +131,7 @@ package
 			play("killed");
 			frame = 0;
 			//Play sound 
-			//FlxG.play(GameAssets.humanHit, .75);
+			FlxG.play(GameAssets.humanHit, .75);
 			
 			//Gibs creator
 			_gibs = new FlxEmitter(0,0, -1.5);
@@ -156,8 +153,9 @@ package
 				_gibs.at(this);
 				_gibs.start(true, 5, 0, 40);
 			}
-
+			
 			//End of Gibs creator
+			
 			FlxG.elapsed += _timer;
 			if (_timer >= 5)
 			{

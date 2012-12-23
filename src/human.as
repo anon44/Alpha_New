@@ -4,7 +4,7 @@ package
 	import org.flixel.plugin.photonstorm.*;
 	import GameAssets;
 	import Registry;
-	/** //TODO Create basic movement 
+	/** Human Class for the Menu
 	 * 
 	 * 
 	 */
@@ -41,40 +41,9 @@ package
 			super.update();
 			if (alive || FlxG.state.active != MenuState)
 			{
-
-				/*//New code
-				var a:Number = FlxVelocity.distanceBetween(this, Registry.followO);
-				var b:Number = FlxVelocity.angleBetween(this, Registry.followO);
-				if (a <= 75)
-				{
-					acceleration.x = 0;
-					if (b > -1 && facing == FlxObject.RIGHT)
-					{
-						velocity.x = FlxG.random()*-50;
-						facing = LEFT;
-					}
+				
+			
 					
-					if (b > -45 && facing == FlxObject.LEFT)
-					{
-						velocity.x = FlxG.random()*50;
-						facing = RIGHT;
-					}
-				}
-				else
-				{
-					//New code 
-					acceleration.x += (facing == LEFT) ? ( -speed) : (speed);
-					updateBumpers();
-				
-					if (frontBumper.overlaps(Registry.player))
-					{
-						FlxG.log("OVER");
-						facing = (facing == LEFT) ? RIGHT : LEFT;
-						acceleration.x = 0;
-						updateBumpers();
-					}
-				}*/
-				
 		    	if (velocity.x > 0 || velocity.x < -1)
 					play("running");
 				else 
@@ -133,7 +102,8 @@ package
 			play("killed");
 			frame = 0;
 			//Play sound 
-			//FlxG.play(GameAssets.humanHit, .75);
+			FlxG.play(GameAssets.humanHit, .75);
+			
 			
 			//Gibs creator
 			_gibs = new FlxEmitter(0,0, -1.5);

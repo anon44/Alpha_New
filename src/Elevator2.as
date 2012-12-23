@@ -41,13 +41,7 @@ package
 		 */
 		override public function update():void
 		{
-			super.updateControls();
-			/*acceleration.x = followObject._a; //This works but needs more adjustments
-			if (acceleration.x < -1)//Playing around with this, trying different things
-				acceleration.x * 1;
-			else if (acceleration.x == 0)
-				acceleration.x * 50;*/
-			
+			super.updateControls();			
 			//Updating the animations in the game
 			if (facing == LEFT && down == true)
 				frame = 0;

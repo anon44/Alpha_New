@@ -40,14 +40,14 @@ package
 		[Embed(source = "../src/Images/glass1.png")] public static var glass1PNG:Class;
 		
 		//Sounds
-		/*[Embed(source = "../src/Sounds/hurtPlayer.mp3")] public static var playerHit:Class;
+		[Embed(source = "../src/Sounds/hurtPlayer.mp3")] public static var playerHit:Class;
 		[Embed(source = "../src/Sounds/82371__gynation__paper-crush-medium-2.mp3")] public static var humanHit:Class;
 		[Embed(source = "../src/Sounds/humanScream1.mp3")] public static var humanScream1:Class;
 		[Embed(source = "../src/Sounds/coinPickup.mp3")] public static var coinGet:Class;
 		[Embed(source = "../src/Sounds/35642__sandyrb__boom2.mp3")] public static var stompBoom:Class;
 		//[Embed(source = "../src/Sounds/35642__sandyrb__boom2.mp3")] public static var gGrunt:Class;
 		[Embed(source = "../src/Sounds/gLaugh.mp3")] public static var gLaugh:Class;
-		[Embed(source = "../src/Sounds/stompTree.mp3")] public static var stompTree:Class;*/
+		[Embed(source = "../src/Sounds/stompTree.mp3")] public static var stompTree:Class;
 		
 	}
 

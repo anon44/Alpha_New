@@ -53,12 +53,8 @@ package
 
 			solid = false;
 			moves = false;
-			
-			//FlxG.play(GameAssets.stompTree, .35);
-			//Coins
-			//cE =   new coinEmitter(this.x, this.y);
-			//cE.start(true, 0, 0, 1);
-			//FlxG.state.add(cE);
+
+			FlxG.play(GameAssets.stompTree, .35);
 			
 			//Gibs creator
 			//Gibs creator for the leafs
