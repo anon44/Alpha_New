@@ -171,9 +171,10 @@ package
 			_elevators = new FlxGroup();
 			_elevator1 = new Elevator1(_elevatorStart.x, _elevatorStart.y);
 			_elevator2 = new Elevator2(_elevatorStart.x, _elevatorStart.y);
-			
 			_followObject  = new followObject(0, 255);
 			Registry.followO = _followObject;
+			Registry.elevator1 = _elevator1;
+			Registry.elevator2 = _elevator2;
 			_elevators.add(_elevator2);
 			_elevators.add(_elevator1);
 			
@@ -181,7 +182,7 @@ package
 			add(_followObject);	
 			
 			//Add the hand
-			hand = new Hand(20, 10);
+			hand = new Hand(0, -255);
 			Registry.hand = hand;
 			add(hand);
 			/*End Enemies*/

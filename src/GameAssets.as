@@ -42,7 +42,7 @@ package
 		//Sounds
 		[Embed(source = "../src/Data/Sounds/hurtPlayer.mp3")] public static var playerHit:Class;
 		[Embed(source = "../src/Data/Sounds/82371__gynation__paper-crush-medium-2.mp3")] public static var humanHit:Class;
-		[Embed(source = "../src/Data/Sounds/humanScream1.mp3")] public static var humanScream1:Class;
+		//[Embed(source = "../src/Data/Sounds/humanScream1.mp3")] public static var humanScream1:Class;
 		[Embed(source = "../src/Data/Sounds/coinPickup.mp3")] public static var coinGet:Class;
 		[Embed(source = "../src/Data/Sounds/35642__sandyrb__boom2.mp3")] public static var stompBoom:Class;
 		//[Embed(source = "../src/Data/Sounds/35642__sandyrb__boom2.mp3")] public static var gGrunt:Class;

@@ -11,6 +11,7 @@ package Giantess
 	import org.flixel.plugin.photonstorm.*;
 	import com.greensock.*;
 	import com.greensock.easing.*;
+	
 	public class elevatorMain extends FlxSprite
 	{
 		/**
@@ -109,6 +110,7 @@ package Giantess
 								velocity.y = +500; //Hard stomp
 								TweenLite.to(this, .01, { x:Registry.followO.x-40, ease:Sine.easeInOut} );
 								//FlxG.play(GameAssets.stompBoom);
+								Registry.followO.attackNumber = 0; //Reset the attack number
 								y = startPoint.y; //Reached the bottom
 						}
 						else

@@ -97,7 +97,7 @@ package Menus
 		{
 			_human.kill()
 			FlxG.play(GameAssets.stompBoom);
-			FlxG.play(GameAssets.gLaugh);
+			//FlxG.play(GameAssets.gLaugh);
 			info2.visible = true;
 		}
 		

@@ -48,7 +48,7 @@ package NPC
 					acceleration.x = 0;
 					if (b > -1 && facing == FlxObject.RIGHT)
 					{
-						FlxG.play(GameAssets.humanScream1, .15);
+						//FlxG.play(GameAssets.humanScream1, .15);
 						velocity.x = FlxG.random()*-75;
 						facing = LEFT;
 					}

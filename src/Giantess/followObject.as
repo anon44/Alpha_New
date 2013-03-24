@@ -18,7 +18,7 @@ package Giantess
 		 */
 		public static var _x:int;
 		public static var _a:int;
-		public  var attackNumber:int;
+		public  var attackNumber:Number;
 		
 		public function followObject(X:int , Y:int) 
 		{
@@ -31,18 +31,19 @@ package Giantess
 		
 		override public function update():void
 		{
+			
 			this.y = 240;
 			var a:Number = FlxVelocity.distanceBetween(this, Registry.player);
 			var b:Number = FlxVelocity.distanceBetween(this, Registry._humanShooter);
 			var c:Number = FlxVelocity.distanceBetween(this, Registry._humanReg);
 			velocity.x = 25;
-			if ( a <= 155){
+			if ( a <= 155) {
 				FlxVelocity.moveTowardsObject(this, Registry.player, 75); //Follow the player 
 				//this is where the attack will be randomize 
-				attackNumber = FlxG.random() * 3;
+				attackNumber = FlxMath.rand(1,2);
 				//1 = hard stomp
-				//2 = kick (not done)
-				//3 = hand capture 
+				//2 = hand capture
+				//3 = kick (not done)
 			}
 			else if ( b <= 150)
 				FlxVelocity.moveTowardsObject(this, Registry._humanShooter, 75); //Follow the shooter
