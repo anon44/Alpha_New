@@ -1,4 +1,4 @@
-package  
+package NPC  
 {
 	import org.flixel.*;
 

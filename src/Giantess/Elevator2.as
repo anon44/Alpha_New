@@ -1,54 +1,54 @@
-//This is the right G
+//This is the left G
 
-package 
+package Giantess
 {
-	import elevatorMain;
 	import org.flixel.*;
+	import Giantess.*;
 	import GameAssets;
-	import Registry;
 	
-	public class Elevator1 extends elevatorMain
-	{
+	public class Elevator2 extends elevatorMain
+	{	
 		/**
 		 * Constructor
 		 */
 		public static var _x:int;
-		
-		public function Elevator1(X:int, Y:int)
+		 
+		public function Elevator2(X:int, Y:int):void
 		{
 			super(X, Y);
 			loadGraphic(GameAssets.elevatorPIC, true, true, 133, 240);
 			startPoint = new FlxPoint(-75, -50);
-			endPoint = new FlxPoint(0, 55); 
+			endPoint = new FlxPoint(0, 55);
+			down = true;
 			moves = false;
 			velocity.y = RUNSPEED;
 			immovable = true;
-			allowCollisions = FlxObject.ANY;
-			solid = true; 
+			allowCollisions = FlxObject.DOWN;
+			solid = true;
 		}
 		
 		override protected function createAnimations():void
 		{
-			addAnimation("down", [0], 0);
-			addAnimation("up", [1]);
-			addAnimation("Ldown", [2], 0);
-			addAnimation("Lup", [3]);
+			addAnimation("Ldown", [0], 0);
+			addAnimation("Lup", [1]);
+			addAnimation("down", [2]);
+			addAnimation("up", [3]);
 		}
 		/**
 		 * Update each frame
 		 */
-		override protected function updateControls():void
+		override public function update():void
 		{
-			super.updateControls();
+			super.updateControls();			
 			//Updating the animations in the game
 			if (facing == LEFT && down == true)
-				frame = 2;
-			else if (facing == LEFT && down == true)
-				frame = 3;
-			if (down == true)
 				frame = 0;
-			else
+			else if (facing == LEFT && down == true)
 				frame = 1;
+			if (down == true)
+				frame = 2;
+			else
+				frame = 3;
 		}
 	
 	/**

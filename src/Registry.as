@@ -1,8 +1,8 @@
 package  
 {
 	import org.flixel.FlxRect;
-	import followObject;
-	import Player;
+	import Giantess.*;
+	import NPC.*;
 	import org.flixel.*;
 	/**
 	 * ...
@@ -17,6 +17,7 @@ package
 		public static var elevator2:Elevator2;
 		public static var followO:followObject;
 		public static var map:FlxTilemap;
+		public static var hand:Hand;
 		
 		public static var bounds:FlxRect = new FlxRect(0, 0, FlxG.width, FlxG.height);
 	}

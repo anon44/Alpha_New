@@ -1,13 +1,12 @@
-package  
+package Menus 
 {
 	import org.flixel.*;
 	import PlayState;
-	import Elevator1;
+	import Giantess.*;
+	import NPC.*;
 	import org.flixel.plugin.photonstorm.*;
 	import com.greensock.*;
-	import human;
 	import Registry;
-	import followObject;
 	/**
 	 * This is the Menu State  
 	 */

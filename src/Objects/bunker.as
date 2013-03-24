@@ -1,4 +1,4 @@
-package  
+package Objects 
 {
 	/* This is the bunker that the player will escape to, if they have enough coins
 	 *

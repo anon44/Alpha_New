@@ -1,4 +1,4 @@
-package  
+package Giantess
 {
 	import org.flixel.*;
 	import Registry;
@@ -18,13 +18,14 @@ package
 		 */
 		public static var _x:int;
 		public static var _a:int;
-		
+		public  var attackNumber:int;
 		
 		public function followObject(X:int , Y:int) 
 		{
 			super(X, Y);
 			visible = false;
 			solid = false;
+			attackNumber = 0;
 			maxVelocity.x = 100;
 		}
 		
@@ -35,12 +36,18 @@ package
 			var b:Number = FlxVelocity.distanceBetween(this, Registry._humanShooter);
 			var c:Number = FlxVelocity.distanceBetween(this, Registry._humanReg);
 			velocity.x = 25;
-			if ( a <= 155)
-				FlxVelocity.moveTowardsObject(this, Registry.player, 75); 
+			if ( a <= 155){
+				FlxVelocity.moveTowardsObject(this, Registry.player, 75); //Follow the player 
+				//this is where the attack will be randomize 
+				attackNumber = FlxG.random() * 3;
+				//1 = hard stomp
+				//2 = kick (not done)
+				//3 = hand capture 
+			}
 			else if ( b <= 150)
-				FlxVelocity.moveTowardsObject(this, Registry._humanShooter, 75); 
+				FlxVelocity.moveTowardsObject(this, Registry._humanShooter, 75); //Follow the shooter
 			else if ( c <= 100)
-				FlxVelocity.moveTowardsObject(this, Registry._humanReg, 75); 
+				FlxVelocity.moveTowardsObject(this, Registry._humanReg, 75); //Follow the humans
 
 			_x = x;
 			_a = velocity.x;

@@ -1,4 +1,4 @@
-package  
+package Giantess
 {
 
 /**
@@ -81,7 +81,7 @@ package
 						down = true;
 						
 						FlxG.shake(.005, .1); // Shake the level
-						FlxG.play(GameAssets.stompBoom);
+						//FlxG.play(GameAssets.stompBoom);
 						velocity.y = -155;
 						solid = true;
 						
@@ -101,14 +101,15 @@ package
 							turnAround();
 						}
 						
+						//This will be the hard stomp if teh player is close enough
 						var a:Number = FlxVelocity.distanceBetween(Registry.followO, Registry.player)
-						if (a<=45) //To detect if the player is near the step
+						if (a<=45 && Registry.followO.attackNumber == 1) //To detect if the player is near the step and the attack number is 1
 						{
 								this.x = Registry.player.x-75;
 								velocity.y = +500; //Hard stomp
 								TweenLite.to(this, .01, { x:Registry.followO.x-40, ease:Sine.easeInOut} );
-								FlxG.play(GameAssets.stompBoom);
-								y = startPoint.y; //Reached the bottom 
+								//FlxG.play(GameAssets.stompBoom);
+								y = startPoint.y; //Reached the bottom
 						}
 						else
 						{

@@ -1,7 +1,8 @@
-package  
+package Objects 
 {
-	 /** Add two different sounds for crush
-	 * 
+	/* //TODO 
+	 * Add two different sounds for crush
+	 * Create a random array of trees
 	 * 
 	 * 
 	 * */
@@ -10,17 +11,19 @@ package
 	import GameAssets;
 	import PlayState;
 	
-	public class wood extends FlxSprite
+	public class Tree extends FlxSprite
 	{
 		public var _timer:Number;
 		public var _gibs:FlxEmitter; //Gibs to emit whe that object is destoryed 
 		public var _gibs2:FlxEmitter; //Another gib to emit more little objects
 		
-		public function wood(X:int, Y:int)
+		public function Tree(X:int, Y:int)
 		{
-			super(X*16, Y*16);
-			loadGraphic(GameAssets.woodPNG, true, false, 16, 16);
+			super(X*48, Y*48);
+			loadGraphic(GameAssets.treePNG, true, false, 48, 48);
 			solid = true;
+			addAnimation("idle", [1]);
+			addAnimation("crushed", [2]);
 			frame = 1;
 		}
 
@@ -50,12 +53,8 @@ package
 
 			solid = false;
 			moves = false;
-			
+
 			//FlxG.play(GameAssets.stompTree, .35);
-			//Coins
-			//cE =   new coinEmitter(this.x, this.y);
-			//cE.start(true, 0, 0, 1);
-			//FlxG.state.add(cE);
 			
 			//Gibs creator
 			//Gibs creator for the leafs
@@ -65,7 +64,7 @@ package
 			_gibs.setRotation(-720,-720);
 			_gibs.gravity = 100;
 			_gibs.bounce = 0.1;
-			_gibs.makeParticles(GameAssets.woodBits, 10, 10, false, 0.5); // //TODOCreate sprite
+			_gibs.makeParticles(GameAssets.leafBits, 10, 10, false, 0.5); 
 			FlxG.state.add(_gibs);
 			
 			_gibs.x = this.x + width / 2;

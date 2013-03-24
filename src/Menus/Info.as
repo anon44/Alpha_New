@@ -1,4 +1,4 @@
-package 
+package Menus
 {
 	import org.flixel.*;
 	import PlayState;

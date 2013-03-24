@@ -1,14 +1,20 @@
 package
 {
+	import flash.desktop.ClipboardTransferMode;
 	import org.flixel.*;
 	import org.flixel.plugin.photonstorm.*;
 	import Registry;
+	import Giantess.*;
+	import NPC.*;
+	import Objects.*;
+	import Menus.*;
 	
 	public class PlayState extends FlxState
 	{
 		public var _background:FlxTilemap;
 		public var _level:FlxTilemap;
 		
+		public var hand:Hand;
 		public var _followObject:followObject;
 		public var _elevators:FlxGroup;
 		public var _elevator1:Elevator1
@@ -173,6 +179,11 @@ package
 			
 			add(_elevators);
 			add(_followObject);	
+			
+			//Add the hand
+			hand = new Hand(20, 10);
+			Registry.hand = hand;
+			add(hand);
 			/*End Enemies*/
 			
 				
