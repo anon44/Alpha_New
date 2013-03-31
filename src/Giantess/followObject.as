@@ -31,7 +31,7 @@ package Giantess
 		
 		override public function update():void
 		{
-			
+			velocity.x += 5;
 			this.y = 240;
 			var a:Number = FlxVelocity.distanceBetween(this, Registry.player);
 			var b:Number = FlxVelocity.distanceBetween(this, Registry._humanShooter);

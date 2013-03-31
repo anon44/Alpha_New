@@ -17,8 +17,8 @@ package Giantess
 		{
 			super(X, Y);
 			loadGraphic(GameAssets.elevatorPIC, true, true, 133, 240);
-			startPoint = new FlxPoint(-75, -50);
-			endPoint = new FlxPoint(0, 55);
+			topPoint = new FlxPoint(-75, -50);
+			bottomPoint = new FlxPoint(0, 55);
 			down = true;
 			moves = false;
 			velocity.y = RUNSPEED;

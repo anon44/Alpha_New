@@ -305,7 +305,7 @@ package
 		 */
 		private function playerHits(_elevators:elevatorMain, _player:Player):void 
 		{
-			if (_player.y >= _elevators.y && hitTest1 == true || hitTest2 == true)//If the player is under the step
+			if (_player.y >= _elevators.y && Registry.elevator1.hitTest1 == true || Registry.elevator2.hitTest2 == true)//If the player is under the step
 			{
 				if (!_player.flickering)
 				{
